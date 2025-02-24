@@ -9,8 +9,8 @@ export default function CirclePattern({ size, rows, overlap }: CirclePatternProp
   const diameter = size;
   const radius = diameter / 2;
   const horizontalSpacing = diameter * (1 - overlap);
-  // Adjust vertical spacing based on overlap as well
-  const verticalSpacing = diameter * (Math.sqrt(3) / 2) * (1 - overlap);
+  // Calculate vertical spacing based on equilateral triangle geometry
+  const verticalSpacing = horizontalSpacing * Math.sqrt(3) / 2;
 
   // Calculate pattern dimensions
   const circlesPerRow = Math.ceil(800 / horizontalSpacing) + 1;
@@ -37,28 +37,27 @@ export default function CirclePattern({ size, rows, overlap }: CirclePatternProp
 
   for (let row = 0; row < rows - 1; row++) {
     const isEvenRow = row % 2 === 0;
-    const startX = isEvenRow ? horizontalSpacing / 2 : 0;
+    const startX = isEvenRow ? 0 : horizontalSpacing / 2;
 
     for (let col = 0; col < circlesPerRow - 1; col++) {
-      // For each intersection point, create two triangles
-      // Calculate vertices for upward-pointing triangle
-      const x1 = startX + col * horizontalSpacing;
+      // For each grid cell, calculate upward-pointing triangle
+      const x1 = startX + col * horizontalSpacing + horizontalSpacing / 2;
       const y1 = row * verticalSpacing + verticalSpacing / 3;
       const x2 = x1 + horizontalSpacing;
       const y2 = y1;
       const x3 = x1 + horizontalSpacing / 2;
-      const y3 = y1 + verticalSpacing * (2/3);
+      const y3 = y1 + verticalSpacing;
 
       triangles.push([x1, y1, x2, y2, x3, y3]);
 
-      // Calculate vertices for downward-pointing triangle
+      // Calculate downward-pointing triangle if not in first row
       if (row > 0) {
         const x4 = x1;
         const y4 = y1;
         const x5 = x2;
         const y5 = y2;
         const x6 = x3;
-        const y6 = y1 - verticalSpacing * (2/3);
+        const y6 = y1 - verticalSpacing;
 
         triangles.push([x4, y4, x5, y5, x6, y6]);
       }
