@@ -114,7 +114,7 @@ export default function CirclePattern({ size, rows, overlap }: CirclePatternProp
           const rowIndex = Math.floor(i / (2 * (circlesPerRow - 1)));
           const isUpwardTriangle = i % 2 === 0;
           const colors = ['#ff0000', '#00ff00', '#0000ff'];
-
+          
           // Adjust color pattern based on row index
           const colorShift = rowIndex % 2 === 0 
             ? (isUpwardTriangle ? 0 : 1)
