@@ -9,8 +9,9 @@ export default function CirclePattern({ size, rows, overlap }: CirclePatternProp
   const diameter = size;
   const radius = diameter / 2;
   const horizontalSpacing = diameter * (1 - overlap);
-  const verticalSpacing = diameter * Math.sqrt(3) / 2;
-  
+  // Adjust vertical spacing based on overlap as well
+  const verticalSpacing = diameter * (Math.sqrt(3) / 2) * (1 - overlap);
+
   // Calculate pattern dimensions
   const circlesPerRow = Math.ceil(800 / horizontalSpacing) + 1;
   const width = circlesPerRow * horizontalSpacing;
@@ -18,11 +19,11 @@ export default function CirclePattern({ size, rows, overlap }: CirclePatternProp
 
   // Generate circle positions
   const circles: Array<{ cx: number; cy: number }> = [];
-  
+
   for (let row = 0; row < rows; row++) {
     const isEvenRow = row % 2 === 0;
     const startX = isEvenRow ? 0 : horizontalSpacing / 2;
-    
+
     for (let col = 0; col < circlesPerRow; col++) {
       circles.push({
         cx: startX + col * horizontalSpacing,
@@ -49,7 +50,7 @@ export default function CirclePattern({ size, rows, overlap }: CirclePatternProp
           vectorEffect="non-scaling-stroke"
         />
       </defs>
-      
+
       <g className="text-primary/20">
         {circles.map((pos, i) => (
           <use
