@@ -110,7 +110,7 @@ export default function CirclePattern({ size, rows, overlap }: CirclePatternProp
       {/* Add colored nodes at triangle vertices */}
       <g>
         {triangles.map((points, i) => {
-          // Calculate row and column position
+          // Use a fixed color pattern that rotates based on triangle position
           const colors = ['#ff0000', '#00ff00', '#0000ff'];
           return (
             <g key={`nodes-${i}`}>
@@ -118,19 +118,19 @@ export default function CirclePattern({ size, rows, overlap }: CirclePatternProp
                 cx={points[0]}
                 cy={points[1]}
                 r={4}
-                fill={colors[(i + 0) % 3]}
+                fill={colors[0]}
               />
               <circle
                 cx={points[2]}
                 cy={points[3]}
                 r={4}
-                fill={colors[(i + 1) % 3]}
+                fill={colors[1]}
               />
               <circle
                 cx={points[4]}
                 cy={points[5]}
                 r={4}
-                fill={colors[(i + 2) % 3]}
+                fill={colors[2]}
               />
             </g>
           );
