@@ -111,37 +111,26 @@ export default function CirclePattern({ size, rows, overlap }: CirclePatternProp
       <g>
         {triangles.map((points, i) => {
           // Calculate row and column position
-          const rowIndex = Math.floor(i / (circlesPerRow - 1));
-          const colIndex = i % (circlesPerRow - 1);
-
-          // Determine color order based on position
           const colors = ['#ff0000', '#00ff00', '#0000ff'];
-          const shift = (rowIndex + colIndex) % 3;
-          const colorOrder = [
-            colors[(0 + shift) % 3],
-            colors[(1 + shift) % 3],
-            colors[(2 + shift) % 3]
-          ];
-
           return (
             <g key={`nodes-${i}`}>
               <circle
                 cx={points[0]}
                 cy={points[1]}
                 r={4}
-                fill={colorOrder[0]}
+                fill={colors[(i + 0) % 3]}
               />
               <circle
                 cx={points[2]}
                 cy={points[3]}
                 r={4}
-                fill={colorOrder[1]}
+                fill={colors[(i + 1) % 3]}
               />
               <circle
                 cx={points[4]}
                 cy={points[5]}
                 r={4}
-                fill={colorOrder[2]}
+                fill={colors[(i + 2) % 3]}
               />
             </g>
           );
