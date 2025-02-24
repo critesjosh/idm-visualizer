@@ -6,8 +6,6 @@ interface PatternControlsProps {
   onCircleSizeChange: (value: number) => void;
   rows: number;
   onRowsChange: (value: number) => void;
-  overlap: number;
-  onOverlapChange: (value: number) => void;
 }
 
 export default function PatternControls({
@@ -15,8 +13,6 @@ export default function PatternControls({
   onCircleSizeChange,
   rows,
   onRowsChange,
-  overlap,
-  onOverlapChange
 }: PatternControlsProps) {
   return (
     <div className="space-y-6">
@@ -42,20 +38,6 @@ export default function PatternControls({
           onValueChange={([value]) => onRowsChange(value)}
         />
         <p className="text-sm text-muted-foreground">{rows} rows</p>
-      </div>
-
-      <div className="space-y-2">
-        <Label>Circle Overlap</Label>
-        <Slider
-          min={0}
-          max={0.8}
-          step={0.05}
-          value={[overlap]}
-          onValueChange={([value]) => onOverlapChange(value)}
-        />
-        <p className="text-sm text-muted-foreground">
-          {Math.round(overlap * 100)}% overlap
-        </p>
       </div>
     </div>
   );

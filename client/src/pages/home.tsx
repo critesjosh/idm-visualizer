@@ -6,7 +6,7 @@ import PatternControls from "@/components/pattern-controls";
 export default function Home() {
   const [circleSize, setCircleSize] = useState(100);
   const [rows, setRows] = useState(3);
-  const [overlap, setOverlap] = useState(0.3);
+  const overlap = 0.15; // Fixed at 15%
 
   return (
     <div className="min-h-screen bg-background p-6">
@@ -38,8 +38,6 @@ export default function Home() {
                 onCircleSizeChange={setCircleSize}
                 rows={rows}
                 onRowsChange={setRows}
-                overlap={overlap}
-                onOverlapChange={setOverlap}
               />
             </CardContent>
           </Card>
