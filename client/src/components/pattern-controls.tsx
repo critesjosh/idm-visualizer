@@ -49,7 +49,7 @@ export default function PatternControls({
         <Slider
           min={0}
           max={0.8}
-          step={0.1}
+          step={0.05}
           value={[overlap]}
           onValueChange={([value]) => onOverlapChange(value)}
         />
