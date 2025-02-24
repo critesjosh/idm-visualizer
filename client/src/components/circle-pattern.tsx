@@ -106,6 +106,39 @@ export default function CirclePattern({ size, rows, overlap }: CirclePatternProp
           />
         ))}
       </g>
+
+      {/* Add colored nodes at triangle vertices */}
+      <g>
+        {triangles.map((points, i) => {
+          // Calculate color indices based on position
+          const isUpwardTriangle = i % 2 === 0;
+          const colors = ['#ff0000', '#00ff00', '#0000ff'];
+          const colorIndices = isUpwardTriangle ? [0, 1, 2] : [2, 1, 0];
+
+          return (
+            <g key={`nodes-${i}`}>
+              <circle
+                cx={points[0]}
+                cy={points[1]}
+                r={3}
+                fill={colors[colorIndices[0]]}
+              />
+              <circle
+                cx={points[2]}
+                cy={points[3]}
+                r={3}
+                fill={colors[colorIndices[1]]}
+              />
+              <circle
+                cx={points[4]}
+                cy={points[5]}
+                r={3}
+                fill={colors[colorIndices[2]]}
+              />
+            </g>
+          );
+        })}
+      </g>
     </svg>
   );
 }
