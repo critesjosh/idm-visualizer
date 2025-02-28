@@ -11,17 +11,19 @@ export default function PatternControls({
   onCircleSizeChange,
 }: PatternControlsProps) {
   return (
-    <div className="space-y-6">
-      <div className="space-y-2">
-        <Label>Circle Size</Label>
+    <div className="fixed top-4 left-0 right-0 w-full max-w-md mx-auto px-4 py-3 bg-background/80 backdrop-blur-sm rounded-lg border z-10">
+      <div className="flex items-center gap-4">
+        <Label className="w-24 flex-shrink-0">Circle Size</Label>
         <Slider
           min={50}
-          max={200}
+          max={1000}
           step={10}
           value={[circleSize]}
           onValueChange={([value]) => onCircleSizeChange(value)}
         />
-        <p className="text-sm text-muted-foreground">{circleSize}px</p>
+        <span className="text-sm text-muted-foreground w-16 text-right">
+          {circleSize}px
+        </span>
       </div>
     </div>
   );
